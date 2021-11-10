@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.s24.connpassclient.DetailSearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:checkedButton="@={viewModel.condition}"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/and" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:duplicateParentState="true"
+                android:focusable="true"
+                android:text="@string/or" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/keyword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:autofillHints=""
+            android:ems="1"
+            android:hint="@string/hint_keywords"
+            android:inputType="text"
+            android:text="@={viewModel.keyword}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <EditText
+            android:id="@+id/edtDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/date"
+            android:inputType="date"
+            android:text="@={viewModel.date}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/keyword" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtDate"
+            app:layout_constraintVertical_bias="1.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/hokkaido_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/北海道"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/hokkaido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/北海道"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 0)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hokkaido_label" />
+                <!--==================================================================================-->
+
+
+                <!--==================================================================================-->
+                <TextView
+                    android:id="@+id/touhoku_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/東北"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hokkaido" />
+
+                <CheckBox
+                    android:id="@+id/aomori"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/青森県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 1)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/touhoku_label" />
+
+                <CheckBox
+                    android:id="@+id/iwate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/岩手県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 2)}"
+                    app:layout_constraintStart_toEndOf="@+id/aomori"
+                    app:layout_constraintTop_toTopOf="@+id/aomori" />
+
+                <CheckBox
+                    android:id="@+id/miyagi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/宮城県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 3)}"
+                    app:layout_constraintStart_toEndOf="@+id/iwate"
+                    app:layout_constraintTop_toTopOf="@+id/iwate" />
+
+                <CheckBox
+                    android:id="@+id/akita"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/秋田県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 4)}"
+                    app:layout_constraintStart_toEndOf="@+id/miyagi"
+                    app:layout_constraintTop_toTopOf="@+id/miyagi" />
+
+                <CheckBox
+                    android:id="@+id/yamagata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/山形県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 5)}"
+                    app:layout_constraintStart_toEndOf="@+id/akita"
+                    app:layout_constraintTop_toTopOf="@+id/akita" />
+
+                <CheckBox
+                    android:id="@+id/hukusima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/福島県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 6)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/yamagata" />
+
+                <!--==================================================================================-->
+
+
+                <!--==================================================================================-->
+                <TextView
+                    android:id="@+id/kanntou_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/関東"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hukusima" />
+
+                <CheckBox
+                    android:id="@+id/ibaraki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/茨木県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 7)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kanntou_label" />
+
+                <CheckBox
+                    android:id="@+id/totigi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/栃木県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 8)}"
+                    app:layout_constraintStart_toEndOf="@+id/ibaraki"
+                    app:layout_constraintTop_toTopOf="@+id/ibaraki" />
+
+                <CheckBox
+                    android:id="@+id/gunnma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/群馬県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 9)}"
+                    app:layout_constraintStart_toEndOf="@+id/totigi"
+                    app:layout_constraintTop_toTopOf="@+id/totigi" />
+
+                <CheckBox
+                    android:id="@+id/saitama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/埼玉県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 10)}"
+                    app:layout_constraintStart_toEndOf="@+id/gunnma"
+                    app:layout_constraintTop_toTopOf="@+id/gunnma" />
+
+                <CheckBox
+                    android:id="@+id/tiba"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/千葉県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 11)}"
+                    app:layout_constraintStart_toEndOf="@+id/saitama"
+                    app:layout_constraintTop_toTopOf="@+id/saitama" />
+
+                <CheckBox
+                    android:id="@+id/toukyou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/東京都"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 12)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tiba" />
+
+                <CheckBox
+                    android:id="@+id/kanagawa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/神奈川県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 13)}"
+                    app:layout_constraintStart_toEndOf="@+id/toukyou"
+                    app:layout_constraintTop_toBottomOf="@+id/ibaraki" />
+                <!--==================================================================================-->
+
+
+                <!--==================================================================================-->
+                <TextView
+                    android:id="@+id/tyuubu_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/中部"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kanagawa" />
+
+                <CheckBox
+                    android:id="@+id/niigata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/新潟県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 14)}"
+                    app:layout_constraintStart_toEndOf="@+id/nagano"
+                    app:layout_constraintTop_toTopOf="@+id/nagano" />
+
+                <CheckBox
+                    android:id="@+id/toyama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/富山県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 15)}"
+                    app:layout_constraintStart_toEndOf="@+id/niigata"
+                    app:layout_constraintTop_toTopOf="@+id/niigata" />
+
+                <CheckBox
+                    android:id="@+id/isikawa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/石川県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 16)}"
+                    app:layout_constraintStart_toEndOf="@+id/toyama"
+                    app:layout_constraintTop_toTopOf="@+id/toyama" />
+
+                <CheckBox
+                    android:id="@+id/hukui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/福井県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 17)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/isikawa" />
+
+                <CheckBox
+                    android:id="@+id/yamanasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/山梨県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 18)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tyuubu_label" />
+
+                <CheckBox
+                    android:id="@+id/nagano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/長野県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 19)}"
+                    app:layout_constraintStart_toEndOf="@+id/yamanasi"
+                    app:layout_constraintTop_toTopOf="@+id/yamanasi" />
+
+                <CheckBox
+                    android:id="@+id/gihu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/岐阜県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 20)}"
+                    app:layout_constraintStart_toEndOf="@+id/hukui"
+                    app:layout_constraintTop_toTopOf="@+id/hukui" />
+
+                <CheckBox
+                    android:id="@+id/sizuoka"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/静岡県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 21)}"
+                    app:layout_constraintStart_toEndOf="@+id/gihu"
+                    app:layout_constraintTop_toBottomOf="@+id/nagano" />
+
+                <CheckBox
+                    android:id="@+id/aiti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/愛知県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 22)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sizuoka" />
+                <!--==================================================================================-->
+
+
+                <!--==================================================================================-->
+                <TextView
+                    android:id="@+id/kinnki_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/近畿"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/aiti" />
+
+                <CheckBox
+                    android:id="@+id/mie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/三重県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 23)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kinnki_label" />
+
+                <CheckBox
+                    android:id="@+id/siga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/滋賀県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 24)}"
+                    app:layout_constraintStart_toEndOf="@+id/mie"
+                    app:layout_constraintTop_toTopOf="@+id/mie" />
+
+                <CheckBox
+                    android:id="@+id/kyouto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/京都府"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 25)}"
+                    app:layout_constraintStart_toEndOf="@+id/siga"
+                    app:layout_constraintTop_toTopOf="@+id/siga" />
+
+                <CheckBox
+                    android:id="@+id/oosaka"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/大阪府"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 26)}"
+                    app:layout_constraintStart_toEndOf="@+id/kyouto"
+                    app:layout_constraintTop_toTopOf="@+id/kyouto" />
+
+                <CheckBox
+                    android:id="@+id/hyougo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/兵庫県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 27)}"
+                    app:layout_constraintStart_toEndOf="@+id/oosaka"
+                    app:layout_constraintTop_toTopOf="@+id/oosaka" />
+
+                <CheckBox
+                    android:id="@+id/wakayama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/和歌山県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 29)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hyougo" />
+
+                <CheckBox
+                    android:id="@+id/nara"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/奈良県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 28)}"
+                    app:layout_constraintStart_toEndOf="@+id/wakayama"
+                    app:layout_constraintTop_toTopOf="@+id/wakayama" />
+                <!--==================================================================================-->
+
+
+                <!--==================================================================================-->
+                <TextView
+                    android:id="@+id/tyuugoku_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/中国"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nara" />
+
+                <CheckBox
+                    android:id="@+id/tottori"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/鳥取県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 30)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tyuugoku_label" />
+
+                <CheckBox
+                    android:id="@+id/simane"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/島根県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 31)}"
+                    app:layout_constraintStart_toEndOf="@+id/tottori"
+                    app:layout_constraintTop_toTopOf="@+id/tottori" />
+
+                <CheckBox
+                    android:id="@+id/okayama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/岡山県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 32)}"
+                    app:layout_constraintStart_toEndOf="@+id/simane"
+                    app:layout_constraintTop_toTopOf="@+id/simane" />
+
+                <CheckBox
+                    android:id="@+id/hirosima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/広島県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 33)}"
+                    app:layout_constraintStart_toEndOf="@+id/okayama"
+                    app:layout_constraintTop_toTopOf="@+id/okayama" />
+
+                <CheckBox
+                    android:id="@+id/yamaguti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/山口県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 34)}"
+                    app:layout_constraintStart_toEndOf="@+id/hirosima"
+                    app:layout_constraintTop_toTopOf="@+id/hirosima" />
+                <!--==================================================================================-->
+
+
+                <!--==================================================================================-->
+                <TextView
+                    android:id="@+id/sikoku_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/四国"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/yamaguti" />
+
+                <CheckBox
+                    android:id="@+id/tokusima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/徳島県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 35)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sikoku_label" />
+
+                <CheckBox
+                    android:id="@+id/kagawakenn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/香川県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 36)}"
+                    app:layout_constraintStart_toEndOf="@+id/tokusima"
+                    app:layout_constraintTop_toTopOf="@+id/tokusima" />
+
+                <CheckBox
+                    android:id="@+id/ehime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/愛媛県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 37)}"
+                    app:layout_constraintStart_toEndOf="@+id/kagawakenn"
+                    app:layout_constraintTop_toTopOf="@+id/kagawakenn" />
+
+                <CheckBox
+                    android:id="@+id/kouti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/高知県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 38)}"
+                    app:layout_constraintStart_toEndOf="@+id/ehime"
+                    app:layout_constraintTop_toTopOf="@+id/ehime" />
+                <!--==================================================================================-->
+
+
+                <!--==================================================================================-->
+                <TextView
+                    android:id="@+id/kyuusyuu_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/九州"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kouti" />
+
+                <CheckBox
+                    android:id="@+id/hukuoka"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/福岡県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 39)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kyuusyuu_label" />
+
+                <CheckBox
+                    android:id="@+id/saga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/佐賀県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 40)}"
+                    app:layout_constraintStart_toEndOf="@+id/hukuoka"
+                    app:layout_constraintTop_toTopOf="@+id/hukuoka" />
+
+                <CheckBox
+                    android:id="@+id/nagasaki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/長崎県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 41)}"
+                    app:layout_constraintStart_toEndOf="@+id/saga"
+                    app:layout_constraintTop_toTopOf="@+id/saga" />
+
+                <CheckBox
+                    android:id="@+id/kumamoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/熊本県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 42)}"
+                    app:layout_constraintStart_toEndOf="@+id/nagasaki"
+                    app:layout_constraintTop_toTopOf="@+id/nagasaki" />
+
+                <CheckBox
+                    android:id="@+id/ooita"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/大分県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 43)}"
+                    app:layout_constraintStart_toEndOf="@+id/kumamoto"
+                    app:layout_constraintTop_toTopOf="@+id/kumamoto" />
+
+                <CheckBox
+                    android:id="@+id/miyazaki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/宮崎県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 44)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ooita" />
+
+                <CheckBox
+                    android:id="@+id/kagosima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/鹿児島県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 45)}"
+                    app:layout_constraintStart_toEndOf="@+id/miyazaki"
+                    app:layout_constraintTop_toBottomOf="@+id/hukuoka" />
+
+                <CheckBox
+                    android:id="@+id/okinawa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/沖縄県"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 46)}"
+                    app:layout_constraintStart_toEndOf="@+id/kagosima"
+                    app:layout_constraintTop_toTopOf="@+id/kagosima" />
+                <!--==================================================================================-->
+
+
+                <!--==================================================================================-->
+                <TextView
+                    android:id="@+id/sonota_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/その他"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/okinawa" />
+
+                <CheckBox
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/オンライン"
+                    android:onClick="@{(theView) -> viewModel.onClick(theView, 47)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sonota_label" />
+                <!--==================================================================================-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

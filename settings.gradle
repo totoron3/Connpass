@@ -1,0 +1,2 @@
+rootProject.name = "s24_ConnpassClient"
+include ':app'

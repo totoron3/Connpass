@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="event"
+            type="com.s24.connpassclient.Event" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/label_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/title"
+                android:textColor="@color/teal_200"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{event.title}"
+                android:textColor="@color/purple_700"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintStart_toStartOf="@+id/label_title"
+                app:layout_constraintTop_toBottomOf="@+id/label_title"
+                tools:text="title" />
+
+            <TextView
+                android:id="@+id/label_catch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{event.catch}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintStart_toStartOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/label_description"
+                android:text="@string/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/teal_200"
+                app:layout_constraintStart_toStartOf="@+id/label_catch"
+                app:layout_constraintTop_toBottomOf="@+id/label_catch"
+                tools:text="@string/description" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                description="@{event.description}"
+                app:layout_constraintStart_toStartOf="@+id/label_description"
+                app:layout_constraintTop_toBottomOf="@+id/label_description" />
+
+            <TextView
+                android:id="@+id/label_event_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_event_url"
+                android:textColor="@color/teal_200"
+                app:layout_constraintStart_toStartOf="@+id/description"
+                app:layout_constraintTop_toBottomOf="@+id/description" />
+
+            <TextView
+                android:id="@+id/event_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{event.eventUrl}"
+                app:layout_constraintStart_toStartOf="@+id/label_event_url"
+                app:layout_constraintTop_toBottomOf="@+id/label_event_url"
+                tools:text="@string/event_url" />
+
+            <TextView
+                android:id="@+id/label_hash_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_hash_tag"
+                android:textColor="@color/teal_200"
+                app:layout_constraintStart_toStartOf="@+id/event_url"
+                app:layout_constraintTop_toBottomOf="@+id/event_url"
+                tools:text="Hash Tag" />
+
+            <TextView
+                android:id="@+id/hash_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{event.hashTag}"
+                app:layout_constraintStart_toStartOf="@+id/label_hash_tag"
+                app:layout_constraintTop_toBottomOf="@+id/label_hash_tag"
+                tools:text="@string/hash_tag" />
+
+            <TextView
+                android:id="@+id/label_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_date"
+                android:textColor="@color/teal_200"
+                app:layout_constraintStart_toStartOf="@+id/hash_tag"
+                app:layout_constraintTop_toBottomOf="@+id/hash_tag" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{event.startedAt}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/label_date"
+                app:layout_constraintTop_toBottomOf="@+id/label_date"
+                tools:text="start" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/haihunn"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintBaseline_toBaselineOf="@+id/date"
+                app:layout_constraintStart_toEndOf="@+id/date" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{event.endedAt}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                tools:text="end" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
